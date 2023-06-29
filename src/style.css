@@ -9,6 +9,11 @@ body {
   background-color: transparent;
 }
 
+#myCanvas {
+  cursor: grab;
+  background-color: transparent;
+}
+
 .texto {
   display: flex;
   height: 10vh;

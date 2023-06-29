@@ -34,7 +34,7 @@ export default class World {
         newLoadingMessage.style.fontSize = "24px";
         newLoadingMessage.style.fontWeight = "bold";
         newLoadingMessage.style.color = "#ffffff";
-        newLoadingMessage.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
+
         document.body.appendChild(newLoadingMessage);
       }
 
