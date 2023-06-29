@@ -28,6 +28,7 @@ export default class Site {
     this.sizes = new Sizes();
     this.time = new Time();
     this.scene = new THREE.Scene();
+    this.scene.background = null;
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.resources = new Resources(sources);
