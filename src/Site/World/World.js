@@ -21,17 +21,22 @@ export default class World {
   update() {
     if (this.isLoading) {
       // Mostrar mensaje de carga mientras isLoading sea true
-      const loadingMessage = document.createElement("div");
-      loadingMessage.textContent = "Cargando...";
-      loadingMessage.style.position = "absolute";
-      loadingMessage.style.top = "50%";
-      loadingMessage.style.left = "50%";
-      loadingMessage.style.transform = "translate(-50%, -50%)";
-      loadingMessage.style.fontSize = "24px";
-      loadingMessage.style.fontWeight = "bold";
-      loadingMessage.style.color = "#ffffff";
-      loadingMessage.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
-      document.body.appendChild(loadingMessage);
+      const loadingMessage = document.querySelector(".loading-message");
+      if (!loadingMessage) {
+        const newLoadingMessage = document.createElement("div");
+        newLoadingMessage.textContent = "Cargando...";
+        newLoadingMessage.classList.add("loading-message");
+        newLoadingMessage.style.position = "absolute";
+        newLoadingMessage.style.top = "50%";
+        newLoadingMessage.style.left = "50%";
+        newLoadingMessage.style.transform = "translate(-50%, -50%)";
+        newLoadingMessage.style.fontFamily = "Courier";
+        newLoadingMessage.style.fontSize = "24px";
+        newLoadingMessage.style.fontWeight = "bold";
+        newLoadingMessage.style.color = "#ffffff";
+        newLoadingMessage.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
+        document.body.appendChild(newLoadingMessage);
+      }
 
       return;
     }
