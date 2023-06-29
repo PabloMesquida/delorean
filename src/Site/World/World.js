@@ -1,8 +1,7 @@
 import Site from "../Site.js";
 import DeLorean from "./DeLorean.js";
 import Environment from "./Environment.js";
-import Floor from "./Floor.js";
-import Floor_circle from "./Floor_circle.js";
+
 import Wheels from "./Wheels.js";
 
 export default class World {
@@ -11,20 +10,32 @@ export default class World {
     this.scene = this.site.scene;
     this.resources = this.site.resources;
     this.environment = new Environment();
-
+    this.isLoading = true;
     this.resources.on("ready", () => {
       this.deLorean = new DeLorean();
-
       this.wheels = new Wheels();
+      this.isLoading = false;
     });
-    //  this.floor = new Floor();
-    //this.floor_circel = new Floor_circle();
-
-    //  this.axesHelper = new THREE.AxesHelper(8);
-    //  this.scene.add(this.axesHelper);
   }
 
   update() {
+    if (this.isLoading) {
+      // Mostrar mensaje de carga mientras isLoading sea true
+      const loadingMessage = document.createElement("div");
+      loadingMessage.textContent = "Cargando...";
+      loadingMessage.style.position = "absolute";
+      loadingMessage.style.top = "50%";
+      loadingMessage.style.left = "50%";
+      loadingMessage.style.transform = "translate(-50%, -50%)";
+      loadingMessage.style.fontSize = "24px";
+      loadingMessage.style.fontWeight = "bold";
+      loadingMessage.style.color = "#ffffff";
+      loadingMessage.style.textShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
+      document.body.appendChild(loadingMessage);
+
+      return;
+    }
+
     if (this.effect_bloom) this.effect_bloom.update();
     if (this.deLorean) {
       this.deLorean.update();
@@ -105,6 +116,11 @@ export default class World {
 
       this.wheels.model4.position.copy(this.site.physicsWorld.physicCar.wheelBody4.position);
       this.wheels.model4.quaternion.copy(this.site.physicsWorld.physicCar.wheelBody4.quaternion);
+    }
+
+    const loadingMessage = document.querySelector(".loading-message");
+    if (loadingMessage) {
+      loadingMessage.remove();
     }
   }
 }
